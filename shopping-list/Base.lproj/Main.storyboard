@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bW6-Uc-jmO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="m8N-ct-3Mn">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Grocery List Table View Controller-->
+        <!--Your List-->
         <scene sceneID="nPI-Ua-eWa">
             <objects>
                 <tableViewController id="bW6-Uc-jmO" customClass="GroceryListTableViewController" customModule="shopping_list" customModuleProvider="target" sceneMemberID="viewController">
@@ -16,7 +16,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GroceryItemTableViewCell" rowHeight="98" id="DtX-k3-RCU" customClass="GroceryItemTableViewCell" customModule="shopping_list" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="98"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="98"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DtX-k3-RCU" id="QBC-qo-vHj">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="97"/>
@@ -75,6 +75,13 @@
                             <outlet property="delegate" destination="bW6-Uc-jmO" id="LQU-hj-iwv"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Your List" id="Pb1-5h-u6h">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="KqE-C8-v8e">
+                            <connections>
+                                <segue destination="lgV-qm-NqV" kind="presentation" id="blX-IP-R6f"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="mainGroceryListView" destination="Myw-Lf-g9p" id="kUc-Ta-SdX"/>
@@ -82,7 +89,97 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qYa-GF-za5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1119.5" y="683.5"/>
+        </scene>
+        <!--Add an Item to the list-->
+        <scene sceneID="ITR-hx-3TT">
+            <objects>
+                <viewController modalPresentationStyle="pageSheet" id="J6f-Ar-5QZ" customClass="AddGroceryListItemViewController" customModule="shopping_list" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cU4-Aq-pve"/>
+                        <viewControllerLayoutGuide type="bottom" id="5eF-tC-NJG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="k8g-8f-if2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter grocery" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hbg-Es-DBp">
+                                <rect key="frame" x="112" y="215" width="150" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quantity" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g6r-Ja-5gN">
+                                <rect key="frame" x="139" y="275" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="lWy-al-bpg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hbg-Es-DBp" firstAttribute="top" secondItem="cU4-Aq-pve" secondAttribute="bottom" constant="151" id="Iop-d0-19v"/>
+                            <constraint firstItem="hbg-Es-DBp" firstAttribute="centerX" secondItem="k8g-8f-if2" secondAttribute="centerX" id="Kiu-nh-gc6"/>
+                            <constraint firstItem="hbg-Es-DBp" firstAttribute="width" secondItem="k8g-8f-if2" secondAttribute="width" multiplier="0.4" id="aae-JT-w2b"/>
+                            <constraint firstItem="g6r-Ja-5gN" firstAttribute="top" secondItem="hbg-Es-DBp" secondAttribute="bottom" constant="30" id="cD3-BN-fKF"/>
+                            <constraint firstItem="g6r-Ja-5gN" firstAttribute="centerX" secondItem="hbg-Es-DBp" secondAttribute="centerX" id="nE9-et-WiK"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add an Item to the list" id="r4a-gL-0Lh">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="wnF-9a-5Sb"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="C2W-02-UTd">
+                            <connections>
+                                <segue destination="FC6-10-hfG" kind="unwind" unwindAction="unwindToMealList:" id="SeZ-EF-9OI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="itemDescription" destination="hbg-Es-DBp" id="xgX-DZ-mxT"/>
+                        <outlet property="quantityField" destination="g6r-Ja-5gN" id="VKM-z4-Xqc"/>
+                        <outlet property="saveButton" destination="C2W-02-UTd" id="Ca8-ck-zme"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hDc-hH-2aJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="FC6-10-hfG" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2329.5" y="644.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="17m-Vl-whi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="m8N-ct-3Mn" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2lR-MP-kK7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bW6-Uc-jmO" kind="relationship" relationship="rootViewController" id="UJT-6k-RP5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nfO-P6-Dbx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="308" y="684"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aVD-s4-U0n">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lgV-qm-NqV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vBS-Qu-2u3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="J6f-Ar-5QZ" kind="relationship" relationship="rootViewController" id="WVk-K5-4r6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pqr-LF-ghl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1713.5" y="649.5"/>
         </scene>
     </scenes>
 </document>

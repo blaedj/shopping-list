@@ -13,11 +13,13 @@ class GroceryItem {
     // MARK: Properties
     
     var name: String
+    var quantity: Int16
  
     // MARK: Initialization
 
-    init?(name: String){
+    init?(name: String, quantity: Int16?=0){
         self.name = name;
+        self.quantity = quantity ?? 0
         if name.isEmpty {
             return nil
         }

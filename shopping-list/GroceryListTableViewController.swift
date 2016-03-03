@@ -55,6 +55,17 @@ class GroceryListTableViewController: UITableViewController {
         return cell
     }
 
+    
+    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.sourceViewController as? AddGroceryListItemViewController, newGroceryItem = sourceViewController.groceryItem {
+            // add a new meal
+            let newIndexPath = NSIndexPath(forRow: groceryItems.count, inSection: 0)
+            groceryItems.append(newGroceryItem)
+            mainGroceryListView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+        }
+    }
+
+    
 
     /*
     // Override to support conditional editing of the table view.

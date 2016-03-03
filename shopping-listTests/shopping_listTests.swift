@@ -15,11 +15,11 @@ class shopping_listTests: XCTestCase {
     func testGroceryItemInitialization() {
         let potentialItem = GroceryItem(name: "tomato")
         XCTAssertNotNil(potentialItem)
+        XCTAssertEqual(potentialItem!.quantity, 0)
     }
    
     func testGroceryItemInitializationFailure() {
         let failedItem = GroceryItem(name: "")
         XCTAssertNil(failedItem, "Blank names are invalid")
     }
-    
 }
