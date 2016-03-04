@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddGroceryListItemViewController: UIViewController, UITextFieldDelegate {
+class GroceryListItemViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: Properties
     var groceryItem: GroceryItem?

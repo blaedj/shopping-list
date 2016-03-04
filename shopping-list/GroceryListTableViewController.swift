@@ -61,7 +61,7 @@ class GroceryListTableViewController: UITableViewController {
 
     
     @IBAction func unwindToGroceryList(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.sourceViewController as? AddGroceryListItemViewController, newGroceryItem = sourceViewController.groceryItem {
+        if let sourceViewController = sender.sourceViewController as? GroceryListItemViewController, newGroceryItem = sourceViewController.groceryItem {
             // add a new meal
             let newIndexPath = NSIndexPath(forRow: groceryItems.count, inSection: 0)
             groceryItems.append(newGroceryItem)

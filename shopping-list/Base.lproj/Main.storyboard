@@ -83,7 +83,7 @@
         <!--Add an Item to the list-->
         <scene sceneID="ITR-hx-3TT">
             <objects>
-                <viewController modalPresentationStyle="pageSheet" id="J6f-Ar-5QZ" customClass="AddGroceryListItemViewController" customModule="shopping_list" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="pageSheet" id="J6f-Ar-5QZ" customClass="GroceryListItemViewController" customModule="shopping_list" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cU4-Aq-pve"/>
                         <viewControllerLayoutGuide type="bottom" id="5eF-tC-NJG"/>
