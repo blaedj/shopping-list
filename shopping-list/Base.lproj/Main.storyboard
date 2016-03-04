@@ -32,9 +32,9 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yaI-aH-o0b">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yaI-aH-o0b">
                                             <rect key="frame" x="94" y="34" width="187" height="30"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <attributedString key="attributedText"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                     </subviews>
@@ -92,16 +92,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter grocery" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hbg-Es-DBp">
-                                <rect key="frame" x="112" y="215" width="150" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter grocery" textAlignment="natural" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="hbg-Es-DBp">
+                                <rect key="frame" x="112" y="215" width="150" height="53"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="next"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quantity" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g6r-Ja-5gN">
-                                <rect key="frame" x="139" y="275" width="97" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="97" id="lWy-al-bpg"/>
-                                </constraints>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quantity" textAlignment="natural" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="g6r-Ja-5gN">
+                                <rect key="frame" x="112" y="308" width="150" height="53"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="decimalPad"/>
                             </textField>
@@ -111,14 +108,17 @@
                             <constraint firstItem="hbg-Es-DBp" firstAttribute="top" secondItem="cU4-Aq-pve" secondAttribute="bottom" constant="151" id="Iop-d0-19v"/>
                             <constraint firstItem="hbg-Es-DBp" firstAttribute="centerX" secondItem="k8g-8f-if2" secondAttribute="centerX" id="Kiu-nh-gc6"/>
                             <constraint firstItem="hbg-Es-DBp" firstAttribute="width" secondItem="k8g-8f-if2" secondAttribute="width" multiplier="0.4" id="aae-JT-w2b"/>
-                            <constraint firstItem="g6r-Ja-5gN" firstAttribute="top" secondItem="hbg-Es-DBp" secondAttribute="bottom" constant="30" id="cD3-BN-fKF"/>
+                            <constraint firstItem="g6r-Ja-5gN" firstAttribute="top" secondItem="hbg-Es-DBp" secondAttribute="bottom" constant="40" id="cD3-BN-fKF"/>
+                            <constraint firstItem="g6r-Ja-5gN" firstAttribute="height" secondItem="k8g-8f-if2" secondAttribute="height" multiplier="0.08" id="ko1-AT-L1l"/>
+                            <constraint firstItem="g6r-Ja-5gN" firstAttribute="width" secondItem="k8g-8f-if2" secondAttribute="width" multiplier="0.4" id="mgr-oj-9MA"/>
+                            <constraint firstItem="hbg-Es-DBp" firstAttribute="height" secondItem="k8g-8f-if2" secondAttribute="height" multiplier="0.08" id="mlf-ij-zlj"/>
                             <constraint firstItem="g6r-Ja-5gN" firstAttribute="centerX" secondItem="hbg-Es-DBp" secondAttribute="centerX" id="nE9-et-WiK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add an Item to the list" id="r4a-gL-0Lh">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="wnF-9a-5Sb">
                             <connections>
-                                <segue destination="FC6-10-hfG" kind="unwind" unwindAction="unwindToGroceryList:" id="GaD-Pr-jGg"/>
+                                <action selector="cancel:" destination="J6f-Ar-5QZ" id="nNn-ac-nOA"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="C2W-02-UTd">
@@ -128,7 +128,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="itemDescription" destination="hbg-Es-DBp" id="xgX-DZ-mxT"/>
+                        <outlet property="itemDescriptionField" destination="hbg-Es-DBp" id="Rof-5F-OeT"/>
                         <outlet property="quantityField" destination="g6r-Ja-5gN" id="VKM-z4-Xqc"/>
                         <outlet property="saveButton" destination="C2W-02-UTd" id="Ca8-ck-zme"/>
                     </connections>
