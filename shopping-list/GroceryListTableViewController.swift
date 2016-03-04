@@ -25,6 +25,9 @@ class GroceryListTableViewController: UITableViewController {
     func loadSampleItems(){
         let item1 = GroceryItem(name: "Milk")
         let item2 = GroceryItem(name: "eggs")
+        assert(item1?.quantity == 0, "Quantity Should Default to Zero!!")
+        assert(item2?.quantity == 0, "Quantity Should Default to Zero!!")
+
         groceryItems += [item1!, item2!]
     }
     
@@ -49,6 +52,7 @@ class GroceryListTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! GroceryItemTableViewCell
         let groceryItem = groceryItems[indexPath.row]
         cell.itemDescription.text = groceryItem.name
+        cell.quantityLabel.text = "\(groceryItem.quantity)"
 
         // Configure the cell...
 
@@ -56,7 +60,7 @@ class GroceryListTableViewController: UITableViewController {
     }
 
     
-    @IBAction func unwindToMealList(sender: UIStoryboardSegue) {
+    @IBAction func unwindToGroceryList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.sourceViewController as? AddGroceryListItemViewController, newGroceryItem = sourceViewController.groceryItem {
             // add a new meal
             let newIndexPath = NSIndexPath(forRow: groceryItems.count, inSection: 0)

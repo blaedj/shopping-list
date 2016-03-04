@@ -22,41 +22,29 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yaI-aH-o0b">
-                                            <rect key="frame" x="92" y="34" width="136" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="136" id="dJs-Wa-Pn1"/>
-                                                <constraint firstAttribute="width" constant="311" id="sXd-hI-T6F"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="sXd-hI-T6F"/>
-                                                </mask>
-                                            </variation>
-                                        </textField>
                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vpS-bF-m8I">
-                                            <rect key="frame" x="28" y="34" width="56" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="76" id="Hdm-yy-Qhp"/>
-                                            </constraints>
+                                            <rect key="frame" x="11" y="34" width="75" height="30"/>
                                             <state key="normal" title="Button"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPI-oJ-za8">
-                                            <rect key="frame" x="236" y="38" width="42" height="21"/>
+                                            <rect key="frame" x="289" y="38" width="56" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yaI-aH-o0b">
+                                            <rect key="frame" x="94" y="34" width="187" height="30"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="MPI-oJ-za8" firstAttribute="leading" secondItem="yaI-aH-o0b" secondAttribute="trailing" constant="8" symbolic="YES" id="0Vd-Pu-g3n"/>
                                         <constraint firstItem="yaI-aH-o0b" firstAttribute="centerY" secondItem="MPI-oJ-za8" secondAttribute="centerY" id="9nB-dC-XJY"/>
                                         <constraint firstItem="yaI-aH-o0b" firstAttribute="leading" secondItem="vpS-bF-m8I" secondAttribute="trailing" constant="8" symbolic="YES" id="AFf-nH-Gzd"/>
-                                        <constraint firstItem="yaI-aH-o0b" firstAttribute="leading" secondItem="QBC-qo-vHj" secondAttribute="leading" constant="92" id="Pv5-ip-dlV"/>
                                         <constraint firstItem="yaI-aH-o0b" firstAttribute="centerY" secondItem="QBC-qo-vHj" secondAttribute="centerY" id="UGO-0g-FeG"/>
-                                        <constraint firstItem="yaI-aH-o0b" firstAttribute="width" secondItem="QBC-qo-vHj" secondAttribute="width" multiplier="0.6" id="VEa-cf-aDe"/>
+                                        <constraint firstItem="yaI-aH-o0b" firstAttribute="centerX" secondItem="QBC-qo-vHj" secondAttribute="centerX" id="UHL-Lv-sX9"/>
+                                        <constraint firstItem="yaI-aH-o0b" firstAttribute="width" secondItem="QBC-qo-vHj" secondAttribute="width" multiplier="0.5" id="VEa-cf-aDe"/>
                                         <constraint firstItem="yaI-aH-o0b" firstAttribute="top" secondItem="vpS-bF-m8I" secondAttribute="top" id="mIA-b4-W6j"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -67,6 +55,7 @@
                                 <connections>
                                     <outlet property="inCart" destination="vpS-bF-m8I" id="b9I-a5-e0i"/>
                                     <outlet property="itemDescription" destination="yaI-aH-o0b" id="R2o-Ay-gWU"/>
+                                    <outlet property="quantityLabel" destination="MPI-oJ-za8" id="MDJ-mq-90h"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -106,7 +95,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter grocery" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hbg-Es-DBp">
                                 <rect key="frame" x="112" y="215" width="150" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="next"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quantity" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g6r-Ja-5gN">
                                 <rect key="frame" x="139" y="275" width="97" height="30"/>
@@ -114,7 +103,7 @@
                                     <constraint firstAttribute="width" constant="97" id="lWy-al-bpg"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="decimalPad"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -127,10 +116,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add an Item to the list" id="r4a-gL-0Lh">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="wnF-9a-5Sb"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="wnF-9a-5Sb">
+                            <connections>
+                                <segue destination="FC6-10-hfG" kind="unwind" unwindAction="unwindToGroceryList:" id="GaD-Pr-jGg"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="C2W-02-UTd">
                             <connections>
-                                <segue destination="FC6-10-hfG" kind="unwind" unwindAction="unwindToMealList:" id="SeZ-EF-9OI"/>
+                                <segue destination="FC6-10-hfG" kind="unwind" unwindAction="unwindToGroceryList:" id="Wbu-SB-kiB"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

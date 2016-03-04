@@ -15,7 +15,7 @@ class shopping_listTests: XCTestCase {
     func testGroceryItemInitialization() {
         let potentialItem = GroceryItem(name: "tomato")
         XCTAssertNotNil(potentialItem)
-        XCTAssertEqual(potentialItem!.quantity, 0)
+        XCTAssertEqual(potentialItem?.quantity, 0)
     }
    
     func testGroceryItemInitializationFailure() {
