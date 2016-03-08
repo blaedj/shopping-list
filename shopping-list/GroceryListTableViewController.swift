@@ -30,7 +30,7 @@ class GroceryListTableViewController: UITableViewController {
 
         groceryItems += [item1!, item2!]
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,11 +55,15 @@ class GroceryListTableViewController: UITableViewController {
         cell.quantityLabel.text = "\(groceryItem.quantity)"
 
         // Configure the cell...
-
+        if groceryItem.completed {
+            cell.accessoryType = .Checkmark
+        }else {
+            cell.accessoryType = .None
+        }
         return cell
     }
 
-    
+
     @IBAction func unwindToGroceryList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.sourceViewController as? GroceryListItemViewController, newGroceryItem = sourceViewController.groceryItem {
             // add a new meal
@@ -69,8 +73,33 @@ class GroceryListTableViewController: UITableViewController {
         }
     }
 
-    
 
+    // Consider a tap on a table view cell an indivation that this item is completed
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        let tappedItem = groceryItems[indexPath.row]
+
+
+        let alertController = UIAlertController(title: "Item Price", message: "enter the price for one item", preferredStyle: .Alert)
+        alertController.addTextFieldWithConfigurationHandler( {
+            (textField: UITextField) in
+            textField.placeholder = "$0.00"
+        })
+
+        let cancelAction = UIAlertAction(title: "cancel", style: .Cancel, handler: {
+            (action )in
+            tappedItem.completed = tappedItem.completed
+        })
+
+        let saveAction = UIAlertAction(title: "Save", style: .Default, handler: {
+            (action) in
+            tappedItem.price = Double(alertController.textFields!.first!.text!)!
+            tappedItem.completed = true
+        })
+        alertController.addAction(cancelAction)
+        alertController.addAction(saveAction)
+        self.presentViewController(alertController, animated: true, completion: {tableView.reloadData()})
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
