@@ -19,15 +19,11 @@ class GroceryListTableViewController: UITableViewController {
         super.viewDidLoad()
         mainGroceryListView.delegate = self;
         loadSampleItems()
-
     }
 
     func loadSampleItems(){
         let item1 = GroceryItem(name: "Milk")
         let item2 = GroceryItem(name: "eggs")
-        assert(item1?.quantity == 0, "Quantity Should Default to Zero!!")
-        assert(item2?.quantity == 0, "Quantity Should Default to Zero!!")
-
         groceryItems += [item1!, item2!]
     }
 
@@ -51,10 +47,10 @@ class GroceryListTableViewController: UITableViewController {
         let cellIdentifier = "GroceryItemTableViewCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! GroceryItemTableViewCell
         let groceryItem = groceryItems[indexPath.row]
+        // Configure the cell
         cell.itemDescription.text = groceryItem.name
         cell.quantityLabel.text = "\(groceryItem.quantity)"
-
-        // Configure the cell...
+        cell.unitPriceLabel.text = String(format: "$%.2f", groceryItem.price )
         if groceryItem.completed {
             cell.accessoryType = .Checkmark
         }else {
@@ -66,7 +62,6 @@ class GroceryListTableViewController: UITableViewController {
 
     @IBAction func unwindToGroceryList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.sourceViewController as? GroceryListItemViewController, newGroceryItem = sourceViewController.groceryItem {
-            // add a new meal
             let newIndexPath = NSIndexPath(forRow: groceryItems.count, inSection: 0)
             groceryItems.append(newGroceryItem)
             mainGroceryListView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)

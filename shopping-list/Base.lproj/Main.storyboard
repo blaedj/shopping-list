@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -22,40 +23,43 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="97"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vpS-bF-m8I">
-                                            <rect key="frame" x="11" y="34" width="75" height="30"/>
-                                            <state key="normal" title="Button"/>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPI-oJ-za8">
-                                            <rect key="frame" x="289" y="38" width="56" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPI-oJ-za8">
+                                            <rect key="frame" x="206" y="38" width="56" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yaI-aH-o0b">
-                                            <rect key="frame" x="94" y="34" width="187" height="30"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yaI-aH-o0b">
+                                            <rect key="frame" x="58" y="34" width="140" height="30"/>
                                             <attributedString key="attributedText"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cH-Yt-eLb">
+                                            <rect key="frame" x="8" y="38" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="MPI-oJ-za8" firstAttribute="leading" secondItem="yaI-aH-o0b" secondAttribute="trailing" constant="8" symbolic="YES" id="0Vd-Pu-g3n"/>
+                                        <constraint firstItem="5cH-Yt-eLb" firstAttribute="top" secondItem="yaI-aH-o0b" secondAttribute="top" constant="4" id="8ZL-gv-mJD"/>
                                         <constraint firstItem="yaI-aH-o0b" firstAttribute="centerY" secondItem="MPI-oJ-za8" secondAttribute="centerY" id="9nB-dC-XJY"/>
-                                        <constraint firstItem="yaI-aH-o0b" firstAttribute="leading" secondItem="vpS-bF-m8I" secondAttribute="trailing" constant="8" symbolic="YES" id="AFf-nH-Gzd"/>
                                         <constraint firstItem="yaI-aH-o0b" firstAttribute="centerY" secondItem="QBC-qo-vHj" secondAttribute="centerY" id="UGO-0g-FeG"/>
                                         <constraint firstItem="yaI-aH-o0b" firstAttribute="centerX" secondItem="QBC-qo-vHj" secondAttribute="centerX" id="UHL-Lv-sX9"/>
                                         <constraint firstItem="yaI-aH-o0b" firstAttribute="width" secondItem="QBC-qo-vHj" secondAttribute="width" multiplier="0.5" id="VEa-cf-aDe"/>
-                                        <constraint firstItem="yaI-aH-o0b" firstAttribute="top" secondItem="vpS-bF-m8I" secondAttribute="top" id="mIA-b4-W6j"/>
+                                        <constraint firstItem="5cH-Yt-eLb" firstAttribute="leading" secondItem="QBC-qo-vHj" secondAttribute="leadingMargin" id="cLQ-xl-hp6"/>
+                                        <constraint firstItem="5cH-Yt-eLb" firstAttribute="width" secondItem="QBC-qo-vHj" secondAttribute="width" multiplier="0.15" id="lTJ-Yd-jPn"/>
+                                        <constraint firstItem="yaI-aH-o0b" firstAttribute="leading" secondItem="5cH-Yt-eLb" secondAttribute="trailing" constant="8" symbolic="YES" id="mve-9i-XlX"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <constraints>
                                     <constraint firstItem="MPI-oJ-za8" firstAttribute="width" secondItem="DtX-k3-RCU" secondAttribute="width" multiplier="0.15" id="0ze-OA-RDV"/>
-                                    <constraint firstItem="vpS-bF-m8I" firstAttribute="width" secondItem="DtX-k3-RCU" secondAttribute="width" multiplier="0.2" id="Y5s-uU-CQJ"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="inCart" destination="vpS-bF-m8I" id="b9I-a5-e0i"/>
                                     <outlet property="itemDescription" destination="yaI-aH-o0b" id="R2o-Ay-gWU"/>
                                     <outlet property="quantityLabel" destination="MPI-oJ-za8" id="MDJ-mq-90h"/>
+                                    <outlet property="unitPriceLabel" destination="5cH-Yt-eLb" id="laF-LQ-mbj"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
