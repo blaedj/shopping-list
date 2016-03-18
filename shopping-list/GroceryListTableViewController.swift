@@ -14,16 +14,25 @@ class GroceryListTableViewController: UITableViewController {
     // MARK: Properties
     var groceryItems = [GroceryItem]()
     @IBOutlet var mainGroceryListView: UITableView!
+    @IBOutlet weak var listTotal: UILabel!
 
+    //TODO: Need to have an entry point that re-calculates the total price 
+    // this should be fired off when any of the following happen: 
+    // - a quantity changes
+    // - a price changes
+    // - an item is added
+    // basically when reloadData is called on the tableView
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mainGroceryListView.delegate = self;
+        navigationItem.leftBarButtonItem = editButtonItem()
         loadSampleItems()
     }
 
     func loadSampleItems(){
-        let item1 = GroceryItem(name: "Milk")
-        let item2 = GroceryItem(name: "eggs")
+        let item1 = GroceryItem(name: "Milk", quantity: 2)
+        let item2 = GroceryItem(name: "eggs", quantity: 1)
         groceryItems += [item1!, item2!]
     }
 
@@ -42,14 +51,13 @@ class GroceryListTableViewController: UITableViewController {
         return groceryItems.count
     }
 
-
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "GroceryItemTableViewCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! GroceryItemTableViewCell
         let groceryItem = groceryItems[indexPath.row]
         // Configure the cell
         cell.itemDescription.text = groceryItem.name
-        cell.quantityLabel.text = "\(groceryItem.quantity)"
+        cell.quantityInput.text = "\(groceryItem.quantity)"
         cell.unitPriceLabel.text = String(format: "$%.2f", groceryItem.price )
         if groceryItem.completed {
             cell.accessoryType = .Checkmark
@@ -69,7 +77,7 @@ class GroceryListTableViewController: UITableViewController {
     }
 
 
-    // Consider a tap on a table view cell an indivation that this item is completed
+    // Consider a tap on a table view cell an indication that this item is completed
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         let tappedItem = groceryItems[indexPath.row]
@@ -99,6 +107,7 @@ class GroceryListTableViewController: UITableViewController {
             }
             item.completed = true
             self.tableView.reloadData()
+            self.updateListTotal()
         })
         alertController.addAction(cancelAction)
         alertController.addAction(saveAction)
@@ -106,8 +115,9 @@ class GroceryListTableViewController: UITableViewController {
 
     }
 
-    func updateTotalInTitleBar() {
-        // this will update the total price in the titlebar
+    func updateListTotal() {
+        let totalPrice = groceryItems.reduce(0.0, combine: {$0 + $1.total } )
+        listTotal.text = String(format: "$%.2f", totalPrice)
     }
 
     /*

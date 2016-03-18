@@ -17,6 +17,10 @@ class GroceryItem {
     var completed: Bool
     var price: Double
  
+    var total: Double {
+        return price * Double(quantity)
+    }
+   
     // MARK: Initialization
 
     init?(name: String, quantity: Int16?=0){
@@ -28,5 +32,5 @@ class GroceryItem {
             return nil
         }
     }
-    
+
 }
