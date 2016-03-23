@@ -16,10 +16,16 @@ class GroceryListItemViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var itemDescriptionField: UITextField!
     @IBOutlet weak var quantityField: UITextField!
+    @IBOutlet weak var priceInput: UITextField!
 
     // MARK: Navigation
     @IBAction func cancel(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+        let isPresentingInAddItemMode = presentingViewController is UINavigationController
+        if isPresentingInAddItemMode {
+            dismissViewControllerAnimated(true, completion: nil)
+        } else {
+            navigationController!.popViewControllerAnimated(true)
+        }
     }
     
     
@@ -29,8 +35,12 @@ class GroceryListItemViewController: UIViewController, UITextFieldDelegate {
             let description = itemDescriptionField.text ?? ""
             let quantityText = quantityField.text ?? "0"
             let quantity = Int16(quantityText)
-            print(description, quantity)
-            groceryItem = GroceryItem(name: description, quantity: quantity)
+            if let priceText = priceInput.text {
+                let parsedPrice = Double(priceText)
+                groceryItem = GroceryItem(name: description, quantity: quantity, price: parsedPrice)
+            } else {
+                groceryItem = GroceryItem(name: description, quantity: quantity)
+            }
         }
     }
 
@@ -54,6 +64,13 @@ class GroceryListItemViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         itemDescriptionField.delegate = self
+        priceInput.hidden = true
+        if let groceryItem = groceryItem {
+            navigationItem.title = groceryItem.name
+            itemDescriptionField.text = groceryItem.name
+            quantityField.text = String(groceryItem.quantity)
+            priceInput.hidden = false
+        }
         checkValidItemDescriptionField()
     }
     

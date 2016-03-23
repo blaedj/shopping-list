@@ -6,4 +6,13 @@
 //  Copyright © 2016 Blaed Johnston. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class CalculatePriceViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+
+}

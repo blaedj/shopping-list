@@ -23,7 +23,20 @@ class GroceryItem {
    
     // MARK: Initialization
 
-    init?(name: String, quantity: Int16?=0){
+    init?(name: String, quantity: Int16?=0, price: Double?){
+        self.name = name;
+        self.completed = false;
+        self.price = 0.0
+        self.quantity = quantity ?? 0
+        if let tprice = price {
+            self.price = tprice
+        }
+        if name.isEmpty {
+            return nil
+        }
+    }
+    
+    init?(name: String, quantity: Int16?=0) {
         self.name = name;
         self.completed = false;
         self.price = 0.0

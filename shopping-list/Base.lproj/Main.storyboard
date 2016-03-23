@@ -77,6 +77,7 @@
                                     <outlet property="itemDescription" destination="yaI-aH-o0b" id="R2o-Ay-gWU"/>
                                     <outlet property="quantityInput" destination="ZKg-0V-5Hi" id="wfD-JQ-Ws7"/>
                                     <outlet property="unitPriceLabel" destination="5cH-Yt-eLb" id="laF-LQ-mbj"/>
+                                    <segue destination="J6f-Ar-5QZ" kind="show" identifier="ShowDetail" id="FD2-JS-76M"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -124,17 +125,26 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" keyboardType="decimalPad"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$0.00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5VF-hJ-seH">
+                                <rect key="frame" x="112" y="401" width="150" height="53"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="5VF-hJ-seH" firstAttribute="width" secondItem="k8g-8f-if2" secondAttribute="width" multiplier="0.4" id="AxE-JK-PaW"/>
+                            <constraint firstItem="5VF-hJ-seH" firstAttribute="height" secondItem="k8g-8f-if2" secondAttribute="height" multiplier="0.08" id="D1i-yI-2NK"/>
                             <constraint firstItem="hbg-Es-DBp" firstAttribute="top" secondItem="cU4-Aq-pve" secondAttribute="bottom" constant="151" id="Iop-d0-19v"/>
                             <constraint firstItem="hbg-Es-DBp" firstAttribute="centerX" secondItem="k8g-8f-if2" secondAttribute="centerX" id="Kiu-nh-gc6"/>
+                            <constraint firstItem="5VF-hJ-seH" firstAttribute="centerX" secondItem="g6r-Ja-5gN" secondAttribute="centerX" id="Voy-ia-O3y"/>
                             <constraint firstItem="hbg-Es-DBp" firstAttribute="width" secondItem="k8g-8f-if2" secondAttribute="width" multiplier="0.4" id="aae-JT-w2b"/>
                             <constraint firstItem="g6r-Ja-5gN" firstAttribute="top" secondItem="hbg-Es-DBp" secondAttribute="bottom" constant="40" id="cD3-BN-fKF"/>
                             <constraint firstItem="g6r-Ja-5gN" firstAttribute="height" secondItem="k8g-8f-if2" secondAttribute="height" multiplier="0.08" id="ko1-AT-L1l"/>
                             <constraint firstItem="g6r-Ja-5gN" firstAttribute="width" secondItem="k8g-8f-if2" secondAttribute="width" multiplier="0.4" id="mgr-oj-9MA"/>
                             <constraint firstItem="hbg-Es-DBp" firstAttribute="height" secondItem="k8g-8f-if2" secondAttribute="height" multiplier="0.08" id="mlf-ij-zlj"/>
                             <constraint firstItem="g6r-Ja-5gN" firstAttribute="centerX" secondItem="hbg-Es-DBp" secondAttribute="centerX" id="nE9-et-WiK"/>
+                            <constraint firstItem="5VF-hJ-seH" firstAttribute="top" secondItem="g6r-Ja-5gN" secondAttribute="bottom" constant="40" id="pgL-aN-JIF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add an Item to the list" id="r4a-gL-0Lh">
@@ -151,6 +161,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="itemDescriptionField" destination="hbg-Es-DBp" id="Rof-5F-OeT"/>
+                        <outlet property="priceInput" destination="5VF-hJ-seH" id="4xM-vX-g9u"/>
                         <outlet property="quantityField" destination="g6r-Ja-5gN" id="VKM-z4-Xqc"/>
                         <outlet property="saveButton" destination="C2W-02-UTd" id="Ca8-ck-zme"/>
                     </connections>
@@ -194,7 +205,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pqr-LF-ghl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1713.5" y="649.5"/>
+            <point key="canvasLocation" x="1745.5" y="1104.5"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="FD2-JS-76M"/>
+    </inferredMetricsTieBreakers>
 </document>

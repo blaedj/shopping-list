@@ -16,13 +16,6 @@ class GroceryListTableViewController: UITableViewController {
     @IBOutlet var mainGroceryListView: UITableView!
     @IBOutlet weak var listTotal: UILabel!
 
-    //TODO: Need to have an entry point that re-calculates the total price 
-    // this should be fired off when any of the following happen: 
-    // - a quantity changes
-    // - a price changes
-    // - an item is added
-    // basically when reloadData is called on the tableView
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         mainGroceryListView.delegate = self;
@@ -41,6 +34,12 @@ class GroceryListTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+
+    func reloadTableData(){
+        tableView.reloadData();
+        updateListTotal()
+    }
+   
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -70,49 +69,16 @@ class GroceryListTableViewController: UITableViewController {
 
     @IBAction func unwindToGroceryList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.sourceViewController as? GroceryListItemViewController, newGroceryItem = sourceViewController.groceryItem {
-            let newIndexPath = NSIndexPath(forRow: groceryItems.count, inSection: 0)
-            groceryItems.append(newGroceryItem)
-            mainGroceryListView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
-        }
-    }
-
-
-    // Consider a tap on a table view cell an indication that this item is completed
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        let tappedItem = groceryItems[indexPath.row]
-        showPriceEntryAlert(tappedItem, complete: nil)
-    }
-
-    //complete is a block called after the viewDidAppear method is called on the popped-up alert view.
-    // this means it is called once the alert view has been displayed.
-    func showPriceEntryAlert(item: GroceryItem, complete: (()->Void)?) {
-        let alertController = UIAlertController(title: "Item Price", message: "enter the price for one item", preferredStyle: .Alert)
-        alertController.addTextFieldWithConfigurationHandler( {
-            (textField: UITextField) in
-            textField.placeholder = "$0.00"
-        })
-        let cancelAction = UIAlertAction(title: "cancel", style: .Cancel, handler: {
-            (action )in
-            item.completed = false
-            self.tableView.reloadData()
-        })
-
-        let saveAction = UIAlertAction(title: "Save", style: .Default, handler: {
-            (action) in
-            if let newPrice = Double((alertController.textFields?.first?.text)!) {
-                item.price = newPrice
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                groceryItems[selectedIndexPath.row] = newGroceryItem
+                tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
+                reloadTableData()
             } else {
-                item.price = 0.0
+                let newIndexPath = NSIndexPath(forRow: groceryItems.count, inSection: 0)
+                groceryItems.append(newGroceryItem)
+                mainGroceryListView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
             }
-            item.completed = true
-            self.tableView.reloadData()
-            self.updateListTotal()
-        })
-        alertController.addAction(cancelAction)
-        alertController.addAction(saveAction)
-        self.presentViewController(alertController, animated: true, completion: complete)
-
+        }
     }
 
     func updateListTotal() {
@@ -157,12 +123,18 @@ class GroceryListTableViewController: UITableViewController {
 
     /*
     // MARK: - Navigation
-
+    */
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "ShowDetail" {
+            let itemDetailViewController = segue.destinationViewController as! GroceryListItemViewController
+            if let selectedItemCell = sender as? GroceryItemTableViewCell {
+                let indexPath = tableView.indexPathForCell(selectedItemCell)!
+                let selectedGroceryItem = groceryItems[indexPath.row]
+                itemDetailViewController.groceryItem = selectedGroceryItem
+            }
+        } else if segue.identifier == "AddItem" {
+            print("Adding new grocery item")
+        }
     }
-    */
-
 }
