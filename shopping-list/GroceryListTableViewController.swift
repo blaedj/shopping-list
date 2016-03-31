@@ -20,13 +20,19 @@ class GroceryListTableViewController: UITableViewController {
         super.viewDidLoad()
         mainGroceryListView.delegate = self;
         navigationItem.leftBarButtonItem = editButtonItem()
-        loadSampleItems()
+        if let savedItems = loadGroceryItems() {
+            groceryItems += savedItems
+        } else {
+            // flatMap the sample items to drop out the nils
+            groceryItems += loadSampleItems().flatMap({$0})
+        }
+        self.updateListTotal()
     }
 
-    func loadSampleItems(){
+    func loadSampleItems() -> [GroceryItem?]{
         let item1 = GroceryItem(name: "Milk", quantity: 2)
         let item2 = GroceryItem(name: "eggs", quantity: 1)
-        groceryItems += [item1!, item2!]
+        return [item1, item2]
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,6 +44,7 @@ class GroceryListTableViewController: UITableViewController {
     func reloadTableData(){
         tableView.reloadData();
         updateListTotal()
+        saveGroceryItems()
     }
    
     // MARK: - Table view data source
@@ -69,14 +76,15 @@ class GroceryListTableViewController: UITableViewController {
 
     @IBAction func unwindToGroceryList(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.sourceViewController as? GroceryListItemViewController, newGroceryItem = sourceViewController.groceryItem {
-            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            if let selectedIndexPath = tableView.indexPathForSelectedRow { // edit an existing item
                 groceryItems[selectedIndexPath.row] = newGroceryItem
                 tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
                 reloadTableData()
-            } else {
+            } else { // add a new grocery item
                 let newIndexPath = NSIndexPath(forRow: groceryItems.count, inSection: 0)
                 groceryItems.append(newGroceryItem)
                 mainGroceryListView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+                reloadTableData()
             }
         }
     }
@@ -89,8 +97,8 @@ class GroceryListTableViewController: UITableViewController {
     
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+        let itemShouldBeEditable = true
+        return itemShouldBeEditable
     }
  
 
@@ -111,7 +119,6 @@ class GroceryListTableViewController: UITableViewController {
     /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
     }
     */
 
@@ -139,4 +146,37 @@ class GroceryListTableViewController: UITableViewController {
             print("Adding new grocery item")
         }
     }
+
+    // MARK: NSCoding
+    
+    func saveGroceryItems(){
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(groceryItems, toFile: GroceryItem.ArchiveURL.path!)
+        if !isSuccessfulSave {
+            print("Failed to save the grocery items...")
+        }
+    }
+    
+    func loadGroceryItems() -> [GroceryItem]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(GroceryItem.ArchiveURL.path!) as? [GroceryItem]
+    }
+    
+    
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

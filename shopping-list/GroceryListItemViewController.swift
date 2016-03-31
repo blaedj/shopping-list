@@ -34,7 +34,7 @@ class GroceryListItemViewController: UIViewController, UITextFieldDelegate {
         if saveButton === sender {
             let description = itemDescriptionField.text ?? ""
             let quantityText = quantityField.text ?? "0"
-            let quantity = Int16(quantityText)
+            let quantity = Int(quantityText)
             if let priceText = priceInput.text {
                 let parsedPrice = Double(priceText)
                 groceryItem = GroceryItem(name: description, quantity: quantity, price: parsedPrice)

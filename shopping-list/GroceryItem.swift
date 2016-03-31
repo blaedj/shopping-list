@@ -8,12 +8,11 @@
 
 import UIKit
 
-class GroceryItem {
+class GroceryItem: NSObject, NSCoding {
 
     // MARK: Properties
-    
     var name: String
-    var quantity: Int16
+    var quantity: Int
     var completed: Bool
     var price: Double
  
@@ -21,13 +20,26 @@ class GroceryItem {
         return price * Double(quantity)
     }
    
+    // MARK: Archiving Paths
+    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("groceryItems")
+    
+    // MARK: Types
+    struct PropertyKey {
+        static let nameKey = "name"
+        static let quantityKey = "quantity"
+        static let priceKey = "price"
+        static let completedKey = "completed"
+    }
+    
     // MARK: Initialization
-
-    init?(name: String, quantity: Int16?=0, price: Double?){
+    init?(name: String, quantity: Int?=0, price: Double?){
         self.name = name;
         self.completed = false;
         self.price = 0.0
         self.quantity = quantity ?? 0
+        super.init()
+        
         if let tprice = price {
             self.price = tprice
         }
@@ -36,7 +48,7 @@ class GroceryItem {
         }
     }
     
-    init?(name: String, quantity: Int16?=0) {
+    init?(name: String, quantity: Int?=0) {
         self.name = name;
         self.completed = false;
         self.price = 0.0
@@ -46,4 +58,28 @@ class GroceryItem {
         }
     }
 
+    // MARK: NSCoding
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
+        aCoder.encodeInt(Int32(quantity), forKey: PropertyKey.quantityKey)
+        aCoder.encodeDouble(price, forKey: PropertyKey.priceKey)
+
+    }
+    
+    required convenience init?(coder decoder: NSCoder) {
+        guard let name = decoder.decodeObjectForKey(PropertyKey.nameKey) as? String
+//            ,let quantity = decoder.decodeObjectForKey(PropertyKey.quantityKey) as? Int,
+//            let price = decoder.decodeObjectForKey(PropertyKey.priceKey) as? Double
+            else {
+                print("Could not initialize item from storage...")
+                return nil
+        }
+        self.init(
+            name: name,
+            quantity:  decoder.decodeIntegerForKey(PropertyKey.quantityKey),
+            price: decoder.decodeDoubleForKey(PropertyKey.priceKey)
+        )
+    }
+    
 }
