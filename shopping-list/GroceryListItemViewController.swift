@@ -73,6 +73,7 @@ class GroceryListItemViewController: UIViewController, UITextFieldDelegate {
             itemDescriptionField.text = groceryItem.name
             quantityField.text = String(groceryItem.quantity)
             priceInput.hidden = false
+            priceInput.text = "\(groceryItem.price)"
         }
         checkValidItemDescriptionField()
     }
