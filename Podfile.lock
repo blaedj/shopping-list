@@ -1,0 +1,10 @@
+PODS:
+  - IHKeyboardAvoiding (2.5)
+
+DEPENDENCIES:
+  - IHKeyboardAvoiding
+
+SPEC CHECKSUMS:
+  IHKeyboardAvoiding: 8f14fed93405dd2c44ce070a26f780d9e477538c
+
+COCOAPODS: 0.39.0
