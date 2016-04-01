@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IHKeyboardAvoiding
 
 class GroceryListItemViewController: UIViewController, UITextFieldDelegate {
 
@@ -63,6 +64,8 @@ class GroceryListItemViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        IHKeyboardAvoiding.setAvoidingView(self.quantityField)
+        IHKeyboardAvoiding.setAvoidingView(self.priceInput)
         itemDescriptionField.delegate = self
         priceInput.hidden = true
         if let groceryItem = groceryItem {
