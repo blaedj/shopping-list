@@ -69,8 +69,6 @@ class GroceryItem: NSObject, NSCoding {
     
     required convenience init?(coder decoder: NSCoder) {
         guard let name = decoder.decodeObjectForKey(PropertyKey.nameKey) as? String
-//            ,let quantity = decoder.decodeObjectForKey(PropertyKey.quantityKey) as? Int,
-//            let price = decoder.decodeObjectForKey(PropertyKey.priceKey) as? Double
             else {
                 print("Could not initialize item from storage...")
                 return nil
