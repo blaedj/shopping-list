@@ -11,10 +11,9 @@ import UIKit
 class GroceryItemTableViewCell: UITableViewCell {
 
     // MARK: Properties
-    @IBOutlet weak var itemDescription: UITextField!
-
     @IBOutlet weak var quantityInput: UITextField!
     @IBOutlet weak var unitPriceLabel: UILabel!
+    @IBOutlet weak var itemDescription: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
