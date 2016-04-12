@@ -18,6 +18,7 @@ class GroceryListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        super.hideKeyboardWhenTappedAround()
         mainGroceryListView.delegate = self;
         navigationItem.leftBarButtonItem = editButtonItem()
         if let savedItems = loadGroceryItems() {

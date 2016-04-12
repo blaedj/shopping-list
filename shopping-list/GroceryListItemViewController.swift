@@ -64,6 +64,7 @@ class GroceryListItemViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         IHKeyboardAvoiding.setAvoidingView(self.quantityField)
         IHKeyboardAvoiding.setAvoidingView(self.priceInput)
         itemDescriptionField.delegate = self
